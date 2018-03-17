@@ -1,0 +1,26 @@
+{
+  "plugins": ["emotion"],
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": ["last 2 versions", "ie >= 11"],
+          "modules": false
+        }
+      }
+    ],
+    "react",
+    "stage-1"
+  ],
+  "env": {
+    "development": {
+      "plugins": ["emotion"],
+      "presets": ["react", "stage-1"]
+    },
+    "test": {
+      "plugins": ["emotion"],
+      "presets": ["react", "stage-1"]
+    }
+  }
+}

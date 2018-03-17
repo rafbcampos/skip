@@ -1,0 +1,24 @@
+{
+  "plugins": ["emotion"],
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": ["last 2 versions", "ie >= 11"],
+          "modules": false
+        }
+      }
+    ],
+    "react",
+    "stage-1"
+  ],
+  "env": {
+    "development": {
+      "presets": ["env", "react", "stage-1"]
+    },
+    "test": {
+      "presets": [["env", { "modules": "commonjs" }], "react", "stage-1"]
+    }
+  }
+}

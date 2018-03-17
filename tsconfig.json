@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "esnext",
+    "outDir": "dist",
+    "jsx": "react",
+    "target": "esnext",
+    "allowJs": true,
+    "diagnostics": true,
+    "downlevelIteration": true,
+    "pretty": true,
+    "noUnusedLocals": true,
+    "noImplicitAny": false,
+    "removeComments": false,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
+  }
+}
