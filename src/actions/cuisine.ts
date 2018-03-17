@@ -1,6 +1,6 @@
-export function getCousine() {
+export function getCousines() {
   return {
-    type: 'GET_CUISINI',
+    type: 'GET_CUISINES',
     payload: {
       request: {
         method: 'get',
@@ -12,7 +12,7 @@ export function getCousine() {
 
 export function searchCuisineByText(text) {
   return {
-    type: 'SEARCH_TEXT',
+    type: 'SEARCH_CUISINE_BY_TEXT',
     payload: {
       request: {
         method: 'get',
@@ -22,9 +22,9 @@ export function searchCuisineByText(text) {
   }
 }
 
-export function searchSotreByCuisine(cousineId) {
+export function searchStoreByCuisine(cousineId) {
   return {
-    type: 'SEARCH_TEXT',
+    type: 'SEARCH_STORE_BY_CUISINE_ID',
     payload: {
       request: {
         method: 'get',

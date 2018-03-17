@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './Home'
 import Nav from '../components/ui/Nav'
 import PrivateRoute from '../hoc/PrivateRoutes'
+import Dashboard from './Dashboard'
 import { About } from './About'
-import { Dashboard } from './Dashboard'
 
 const Routes = () => (
   <Router>
