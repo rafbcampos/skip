@@ -1,10 +1,7 @@
 workbox.skipWaiting()
 workbox.clientsClaim()
 
-workbox.routing.registerRoute(
-  new RegExp('https://hacker-news.firebaseio.com'),
-  workbox.strategies.staleWhileRevalidate(),
-)
+workbox.routing.registerRoute(new RegExp('...'), workbox.strategies.staleWhileRevalidate())
 
 self.addEventListener('push', event => {
   const title = 'Get Started With Workbox'

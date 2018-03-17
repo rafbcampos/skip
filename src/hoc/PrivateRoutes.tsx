@@ -12,9 +12,9 @@ class PrivateRoute extends Component<PrivateRouteProps> {
   componentDidMount() {
     const { token } = this.props
     if (token) {
-      this.props.history.push('/dashboard')
+      this.props.history.replace('/dashboard')
     } else {
-      this.props.history.push('/')
+      this.props.history.replace('/')
     }
   }
 

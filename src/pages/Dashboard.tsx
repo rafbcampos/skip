@@ -9,7 +9,7 @@ const DashboardWrapper = styled(Flex)`
   align-items: center;
   height: calc(100vh - 80px);
   width: 100vw;
-  color: ${props => props.theme.colors.nav};
+  color: 'red';
 `
 
 export const Dashboard = () => (

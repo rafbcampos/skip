@@ -20,7 +20,7 @@ const Routes = () => (
       <Route path="/about" component={About} />
       <Route
         path="/dashboard"
-        crender={props => <PrivateRoute {...props} child={props => <Dashboard {...props} />} />}
+        render={props => <PrivateRoute {...props} child={props => <Dashboard {...props} />} />}
       />
     </Fragment>
   </Router>
