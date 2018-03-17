@@ -1,11 +1,9 @@
 import { persistCombineReducers } from 'redux-persist'
 import storage from 'redux-persist/es/storage'
-import brands from './brands'
-import events from './events'
+import auth from './auth'
 
 const reducers = {
-  brands,
-  events
+  auth,
 }
 
 const config = {
