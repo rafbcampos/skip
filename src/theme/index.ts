@@ -5,7 +5,7 @@ const margins = ['8vw', '8vw', '58px', '66px', '72px']
 const space = [0, 6, 12, 24, 36, 48, 60, 90, 120]
 const fontSizes = [15, 16, 17, 18, 19]
 const font =
-  'Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol'
+  'Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
 const colors = {
   background: '#f2f2f2',
   nav: '#bc2e31',
@@ -34,17 +34,17 @@ const typography = {
 const buttons = {
   size: {
     large: {
-      borderRadius: '50px',
+      borderRadius: '6px',
       padding: '14px 42px 12px',
       fontSize: typography.size.lead,
     },
     medium: {
-      borderRadius: '50px',
+      borderRadius: '6px',
       padding: '14px 42px 12px',
       fontSize: '1em',
     },
     small: {
-      borderRadius: '50px',
+      borderRadius: '6px',
       padding: '10px 28px  8px',
       fontSize: typography.size.small,
     },

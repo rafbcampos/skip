@@ -1,8 +1,13 @@
 import React, { Component, Fragment } from 'react'
+import { width } from 'styled-system'
 
-import { Flex } from '../components/grid'
+import { Flex, ResponsiveProp } from '../components/grid'
+import { H3 } from '../components/typography'
 import color from 'tinycolor2'
 import { connect } from 'react-redux'
+import FaSignIn from 'react-icons/lib/fa/sign-in'
+import FaUserPlus from 'react-icons/lib/fa/user-plus'
+
 import { signUp, signIn } from '../actions/auth'
 
 import styled from '../theme/styled'
@@ -21,6 +26,18 @@ const Input = styled('input')`
   padding: 10px 0;
   border-radius: 3px;
   border: 1px solid lightgray;
+`
+
+interface FormProps {
+  width: ResponsiveProp
+}
+
+const Form = styled<FormProps, 'form'>('form')`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  ${width};
 `
 
 interface HomeProps {
@@ -63,10 +80,9 @@ class Home extends Component<HomeProps> {
 
     return (
       <Flex w={1} justify="center" align="center">
-        <Button onClick={this.changeSingMode}>
-          {signUpMode ? "I'm a old friend!" : "I'm new here!"}
-        </Button>
-        <form onSubmit={signUpMode ? this.signUp : this.signIn}>
+        <Form onSubmit={signUpMode ? this.signUp : this.signIn} width={[1, 1 / 2, 1 / 4]}>
+          <H3 mt="10px">{signUpMode ? 'SignUp' : 'SignIn'}</H3>
+
           <Input
             type="email"
             placeholder="Email"
@@ -95,8 +111,13 @@ class Home extends Component<HomeProps> {
               />
             </Fragment>
           )}
-          <Button>{signUpMode ? 'SignUp' : 'SignIn'}</Button>
-        </form>
+          <Flex w={1} justify="space-around" mt="20px">
+            <Button type="submit">{signUpMode ? 'SignUp' : 'SignIn'}</Button>
+            <Button type="button" onClick={this.changeSingMode}>
+              {signUpMode ? <FaSignIn /> : <FaUserPlus />}
+            </Button>
+          </Flex>
+        </Form>
       </Flex>
     )
   }

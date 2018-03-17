@@ -7,7 +7,6 @@ import reducers from '../reducers'
 
 const client = axios.create({
   baseURL: 'http://api-vanhack-event-sp.azurewebsites.net/',
-  responseType: 'json',
   headers: { 'Content-Type': 'application/json' },
 })
 

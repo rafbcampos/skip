@@ -1,26 +1,20 @@
-import React from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import React, { Fragment } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import Home from './Home'
+import Nav from '../components/ui/Nav'
 import { About } from './About'
+import { Dashboard } from './Dashboard'
 
 const Routes = () => (
   <Router>
-    <div>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-      </ul>
-
-      <hr />
+    <Fragment>
+      <Nav />
 
       <Route exact path="/" component={Home} />
       <Route path="/about" component={About} />
-    </div>
+      <Route path="/dashboard" component={Dashboard} />
+    </Fragment>
   </Router>
 )
 

@@ -20,6 +20,12 @@ export function signUp(customer: Customer) {
   }
 }
 
+export function logOut() {
+  return {
+    type: 'LOGOUT',
+  }
+}
+
 interface Login {
   email: string
   password: string

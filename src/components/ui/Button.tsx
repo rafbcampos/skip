@@ -4,7 +4,6 @@ import styled from '../../theme/styled'
 interface ButtonProps extends React.HTMLProps<'button'> {
   large?: boolean
   small?: boolean
-  xsmall?: boolean
   primary?: boolean
   borderRadius?: number
   backgroundColor?: string
