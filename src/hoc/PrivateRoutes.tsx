@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import RouterProps from '../types/router'
 
 interface PrivateRouteProps extends RouterProps {
-  render: Function
+  child: Function
   token: string
 }
 
@@ -12,17 +12,19 @@ class PrivateRoute extends Component<PrivateRouteProps> {
   componentDidMount() {
     const { token } = this.props
     if (token) {
-      this.props.history.replace('/dashboard')
+      this.props.history.push('/dashboard')
+    } else {
+      this.props.history.push('/')
     }
   }
 
   render() {
-    return this.props.render()
+    return this.props.child()
   }
 }
 
-const ConnectedPrivateRoute = connect(({ token }) => {
-  token
-})(PrivateRoute)
+const ConnectedPrivateRoute = connect(({ auth }) => ({
+  token: auth.token,
+}))(PrivateRoute)
 
 export default ConnectedPrivateRoute

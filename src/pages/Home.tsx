@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { width } from 'styled-system'
 
 import { Flex, ResponsiveProp } from '../components/grid'
-import { H3 } from '../components/typography'
+import { H3, Small } from '../components/typography'
 import color from 'tinycolor2'
 import { connect } from 'react-redux'
 import FaSignIn from 'react-icons/lib/fa/sign-in'
@@ -43,6 +43,7 @@ const Form = styled<FormProps, 'form'>('form')`
 interface HomeProps {
   signUp: Function
   signIn: Function
+  error: string
 }
 class Home extends Component<HomeProps> {
   state = { signUpMode: true, email: '', password: '', name: '', address: '' }
@@ -111,6 +112,7 @@ class Home extends Component<HomeProps> {
               />
             </Fragment>
           )}
+          <Small>{this.props.error}</Small>
           <Flex w={1} justify="space-around" mt="20px">
             <Button type="submit">{signUpMode ? 'SignUp' : 'SignIn'}</Button>
             <Button type="button" onClick={this.changeSingMode}>
@@ -123,6 +125,6 @@ class Home extends Component<HomeProps> {
   }
 }
 
-const ConectedHome = connect(null, { signUp, signIn })(Home)
+const ConectedHome = connect(({ auth }) => ({ error: auth.authError }), { signUp, signIn })(Home)
 
 export default ConectedHome

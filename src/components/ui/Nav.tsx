@@ -34,7 +34,9 @@ const Nav = props => (
       <Link to="/about">
         <H4 mb={0}>About</H4>
       </Link>
-      {props.token && <FaSignOut onClick={props.logOut} color="#fff" />}
+      {props.token && (
+        <FaSignOut style={{ marginLeft: '20px' }} size="20px" onClick={props.logOut} color="#fff" />
+      )}
     </Flex>
   </NavWrapper>
 )
