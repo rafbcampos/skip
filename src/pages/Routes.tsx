@@ -3,24 +3,41 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import Home from './Home'
 import Nav from '../components/ui/Nav'
-import PrivateRoute from '../hoc/PrivateRoutes'
-import Dashboard from './Dashboard'
-import { About } from './About'
+import ReplaceRouteIfAuth from '../hoc/ReplaceRouteIfAuth'
+import StoreList from './StoreList'
+import Store from './Store'
 
 const Routes = () => (
   <Router>
     <Fragment>
       <Nav />
-
       <Route
         exact
         path="/"
-        render={props => <PrivateRoute {...props} child={props => <Home {...props} />} />}
+        render={routeProps => (
+          <ReplaceRouteIfAuth
+            {...routeProps}
+            child={props => <Home {...props} {...routeProps} />}
+          />
+        )}
       />
-      <Route path="/about" component={About} />
       <Route
-        path="/dashboard"
-        render={props => <PrivateRoute {...props} child={props => <Dashboard {...props} />} />}
+        path="/stores"
+        render={routeProps => (
+          <ReplaceRouteIfAuth
+            {...routeProps}
+            child={props => <StoreList {...props} {...routeProps} />}
+          />
+        )}
+      />
+      <Route
+        path="/store/:id"
+        render={routeProps => (
+          <ReplaceRouteIfAuth
+            {...routeProps}
+            child={props => <Store {...props} {...routeProps} />}
+          />
+        )}
       />
     </Fragment>
   </Router>

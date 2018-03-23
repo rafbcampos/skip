@@ -24,15 +24,12 @@ const NavWrapper = styled(Flex)`
   }
 `
 
-const Nav = props => (
+export const Nav = props => (
   <NavWrapper>
     <H2 mb={0}>SKIP</H2>
     <Flex>
       <Link to="/">
         <H4 mb={0}>Home</H4>
-      </Link>
-      <Link to="/about">
-        <H4 mb={0}>About</H4>
       </Link>
       {props.token && (
         <FaSignOut style={{ marginLeft: '20px' }} size="20px" onClick={props.logOut} color="#fff" />

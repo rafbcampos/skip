@@ -1,4 +1,4 @@
-export function getOrder(orderId) {
+export function getProducts() {
   return {
     type: 'GET_PRODUCTS',
     payload: {

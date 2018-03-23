@@ -35,7 +35,7 @@ interface Order {
     }
   ]
   total: number
-  status: string
+  status: string // 'WAITING'
   lastUpdate: Date
 }
 

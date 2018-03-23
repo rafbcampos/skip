@@ -2,12 +2,16 @@ import { persistCombineReducers } from 'redux-persist'
 import storage from 'redux-persist/es/storage'
 import auth from './auth'
 import cuisine from './cuisine'
-import stores from './store'
+import store from './store'
+import products from './products'
+import order from './order'
 
 const reducers = {
   auth,
   cuisine,
-  stores,
+  store,
+  products,
+  order,
 }
 
 const config = {
