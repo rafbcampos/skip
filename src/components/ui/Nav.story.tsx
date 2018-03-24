@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 
 import { Nav } from './Nav'
 
-storiesOf('Token', module).add('Token', () => (
+storiesOf('UI', module).add('Nav', () => (
   <Fragment>
     <Nav token="token" />
     <br />

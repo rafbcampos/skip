@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   }
 `
 
-storiesOf('Button', module).add('Button', () => (
+storiesOf('UI', module).add('Button', () => (
   <Wrapper>
     <Button>Standart</Button>
     <Button primary>Primary</Button>

@@ -35,7 +35,7 @@ const buttons = {
   size: {
     large: {
       borderRadius: '6px',
-      padding: '14px 42px 12px',
+      padding: '18px 46px 16px',
       fontSize: typography.size.lead,
     },
     medium: {

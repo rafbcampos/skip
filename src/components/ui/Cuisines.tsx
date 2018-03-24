@@ -31,7 +31,7 @@ interface CuisineProps {
   setCusine: Function
 }
 
-class Cuisines extends Component<CuisineProps> {
+export class Cuisines extends Component<CuisineProps> {
   componentDidMount() {
     this.props.getCousines()
   }

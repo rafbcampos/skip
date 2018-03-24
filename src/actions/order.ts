@@ -39,14 +39,15 @@ interface Order {
   lastUpdate: Date
 }
 
-export function makeOrder(order: Order) {
+export function makeOrder(order: Order, token) {
   return {
     type: 'MAKE_ORDER',
     payload: {
       request: {
         method: 'post',
-        url: `api/v1/Customer`,
+        url: `/api/v1/Order`,
         data: order,
+        headers: { Authorization: `Bearer ${token}` },
       },
     },
   }

@@ -6,6 +6,7 @@ import Nav from '../components/ui/Nav'
 import ReplaceRouteIfAuth from '../hoc/ReplaceRouteIfAuth'
 import StoreList from './StoreList'
 import Store from './Store'
+import Cart from './Cart'
 
 const Routes = () => (
   <Router>
@@ -36,6 +37,15 @@ const Routes = () => (
           <ReplaceRouteIfAuth
             {...routeProps}
             child={props => <Store {...props} {...routeProps} />}
+          />
+        )}
+      />
+      <Route
+        path="/cart"
+        render={routeProps => (
+          <ReplaceRouteIfAuth
+            {...routeProps}
+            child={props => <Cart {...props} {...routeProps} />}
           />
         )}
       />

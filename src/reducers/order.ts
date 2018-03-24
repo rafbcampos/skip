@@ -1,5 +1,5 @@
 const initialState = {
-  order: [],
+  order: {},
   customer: null,
 }
 
@@ -8,7 +8,7 @@ export default function(state = initialState, action) {
     case 'GET_ORDER_SUCCESS':
     case 'MAKE_ORDER_SUCCESS':
       return {
-        order: [...action.payload.data],
+        order: { ...state, [action.payload.data.id]: action.payload.data },
         customer: state.customer,
       }
     case 'GET_CUSTOMER_BY_ORDER_SUCCESS':

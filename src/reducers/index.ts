@@ -5,6 +5,7 @@ import cuisine from './cuisine'
 import store from './store'
 import products from './products'
 import order from './order'
+import cart from './cart'
 
 const reducers = {
   auth,
@@ -12,6 +13,7 @@ const reducers = {
   store,
   products,
   order,
+  cart,
 }
 
 const config = {
