@@ -5,14 +5,19 @@ import map from 'lodash/map'
 import { CartItem, clearCart } from '../actions/cart'
 import { makeOrder } from '../actions/order'
 import Button from '../components/ui/Button'
+import { Flex } from '../components/grid'
+import { H4 } from '../components/typography'
 
 interface CartProps {
   makeOrder: Function
+  clearCart: Function
   cart: CartItem[]
   token: string
 }
 
 class Cart extends Component<CartProps> {
+  state = { orderSuccess: false }
+
   getTotal = () => {
     const { cart } = this.props
     let total = 0
@@ -54,16 +59,36 @@ class Cart extends Component<CartProps> {
       lastUpdate: date.toISOString(),
     }
 
-    console.log(JSON.stringify(order, null, 2))
-
-    this.props.makeOrder(order, token)
+    this.props.makeOrder(order, token).then(res => {
+      if (res.type === 'MAKE_ORDER_SUCCESS') {
+        this.props.clearCart()
+        this.setState({ orderSuccess: true })
+      }
+    })
   }
 
   render() {
+    const { cart } = this.props
+    const { orderSuccess } = this.state
     return (
       <Fragment>
-        {JSON.stringify(this.props, null, 2)}
-        <Button onClick={this.makeOrder}>Order</Button>
+        {cart &&
+          cart.length > 0 && (
+            <Fragment>
+              {cart.map(item => (
+                <Flex key={item.id} justify="space-between" w={1 / 2}>
+                  <H4>{`${item.count} x ${item.name}`}</H4>
+                  <H4>{item.totalPrice}</H4>
+                </Flex>
+              ))}
+              <Flex justify="space-between" w={1 / 2}>
+                <H4>Total</H4>
+                <H4>{this.getTotal()}</H4>
+              </Flex>
+              <Button onClick={this.makeOrder}>Order</Button>
+            </Fragment>
+          )}
+        {orderSuccess && <H4>Order sended with success!</H4>}
       </Fragment>
     )
   }

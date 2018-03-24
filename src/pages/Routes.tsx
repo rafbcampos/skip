@@ -7,6 +7,8 @@ import ReplaceRouteIfAuth from '../hoc/ReplaceRouteIfAuth'
 import StoreList from './StoreList'
 import Store from './Store'
 import Cart from './Cart'
+import MyOrders from './MyOrders'
+import Order from './Order'
 
 const Routes = () => (
   <Router>
@@ -46,6 +48,24 @@ const Routes = () => (
           <ReplaceRouteIfAuth
             {...routeProps}
             child={props => <Cart {...props} {...routeProps} />}
+          />
+        )}
+      />
+      <Route
+        path="/orders"
+        render={routeProps => (
+          <ReplaceRouteIfAuth
+            {...routeProps}
+            child={props => <MyOrders {...props} {...routeProps} />}
+          />
+        )}
+      />
+      <Route
+        path="/order/:id"
+        render={routeProps => (
+          <ReplaceRouteIfAuth
+            {...routeProps}
+            child={props => <Order {...props} {...routeProps} />}
           />
         )}
       />
