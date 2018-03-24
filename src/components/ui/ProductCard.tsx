@@ -26,17 +26,23 @@ const Thumb = styled.img`
   height: 100px;
 `
 
+const NameAndDescription = styled(Flex)`
+  flex-direction: column;
+`
+
 export const ProductCard = props => {
   const product: Product = props.product
   return (
     <Wrapper w={1}>
       <Card>
         <Thumb src="https://static.pexels.com/photos/70497/pexels-photo-70497.jpeg" />
-        <H4>{product.name}</H4>
-        <Paragraph>{product.description}</Paragraph>
+        <NameAndDescription>
+          <H4>{product.name}</H4>
+          <Paragraph>{product.description}</Paragraph>
+        </NameAndDescription>
         <H4>{product.price}</H4>
         <H4>{props.totalPrice}</H4>
-        <Stepper onChangeCount={props.onChangeCount} />
+        <Stepper limit={10} onChangeCount={props.onChangeCount} />
       </Card>
     </Wrapper>
   )
