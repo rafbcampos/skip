@@ -5,7 +5,7 @@ import { Flex, ResponsiveProp } from '../grid'
 import { H4, Paragraph } from '../typography'
 import styled from '../../theme/styled'
 import { Stepper } from './Stepper'
-import { Product } from '../../pages/Store'
+import { Product } from '../../types/api'
 
 const Wrapper = styled(Flex)`
   justify-content: center;

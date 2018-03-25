@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 
-import { getStores } from '../actions/store'
-import { Flex } from '../components/grid'
 import styled from '../theme/styled'
 import Cuisines from '../components/ui/Cuisines'
+import { Flex } from '../components/grid'
+import { getStores } from '../actions/store'
 import { StoreCard } from '../components/ui/StoreCard'
+import { Store } from '../types/api'
 
 const StoresWrapper = styled(Flex)`
   flex-wrap: wrap;
@@ -14,14 +15,6 @@ const StoresWrapper = styled(Flex)`
   min-height: calc(100vh - 80px);
   width: 100vw;
 `
-
-export interface Store {
-  id: number
-  name: string
-  address: string
-  cousineId: number
-}
-
 interface StoresProps {
   getStores: Function
   store: Store[]

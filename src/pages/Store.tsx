@@ -9,19 +9,9 @@ import { H4 } from '../components/typography'
 import { getProducts } from '../actions/product'
 import { setCart } from '../actions/cart'
 import { ProductCard } from '../components/ui/ProductCard'
-import { Store as StoreInterface } from './StoreList'
-
-// import { searchProductsByStoreId } from '../actions/store'
-export interface Product {
-  id: number
-  storeId: number
-  name: string
-  description: string
-  price: number
-}
+import { Store as StoreInterface, Product } from '../types/api'
 
 interface StoreProps extends RouterProps {
-  searchProductsByStoreId: Function
   getProducts: Function
   setCart: Function
   products: Product[]
@@ -32,8 +22,6 @@ class Store extends Component<StoreProps> {
   state = { cart: null }
 
   componentDidMount() {
-    // const { match: { params: { id } } } = this.props
-    // this.props.searchProductsByStoreId(id)
     this.props.getProducts()
   }
 
@@ -68,15 +56,14 @@ class Store extends Component<StoreProps> {
   }
 
   render() {
-    console.log(JSON.stringify(this.state, null, 2))
-
     const { products } = this.props
+    const { cart } = this.state
     const { match: { params: { id } } } = this.props
+
     const store: StoreInterface = this.props.stores.filter(store => {
       return store.id == id
     })[0]
     const productsToRender = products.filter(product => product.storeId == id)
-    const { cart } = this.state
 
     return (
       <Fragment>
@@ -103,9 +90,12 @@ class Store extends Component<StoreProps> {
 }
 
 const ConectedStore = connect(
-  ({ products, store }) => ({ products: products.products, stores: store.stores }),
+  ({ products, store, order }) => ({
+    products: products.products,
+    stores: store.stores,
+    order: order.orders,
+  }),
   {
-    // searchProductsByStoreId,
     getProducts,
     setCart,
   },

@@ -1,12 +1,4 @@
-export interface CartItem {
-  id: number
-  storeId: number
-  name: string
-  description: string
-  price: number
-  count: number
-  totalPrice: number
-}
+import { CartItem } from '../types/api'
 
 export function setCart(cart: CartItem[]) {
   return {

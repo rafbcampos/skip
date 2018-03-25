@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Flex } from '../grid'
 import { H4, Paragraph } from '../typography'
 import styled from '../../theme/styled'
+import { Store } from '../../types/api'
 
 const Wrapper = styled(Flex)`
   justify-content: center;
@@ -26,13 +27,6 @@ const Thumb = styled.img`
   width: 50%;
   height: 50%;
 `
-
-interface Store {
-  id: number
-  address: string
-  cousineId: number
-  name: string
-}
 
 export const StoreCard = props => {
   const store: Store = props.store

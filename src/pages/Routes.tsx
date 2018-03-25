@@ -24,24 +24,8 @@ const Routes = () => (
           />
         )}
       />
-      <Route
-        path="/stores"
-        render={routeProps => (
-          <ReplaceRouteIfAuth
-            {...routeProps}
-            child={props => <StoreList {...props} {...routeProps} />}
-          />
-        )}
-      />
-      <Route
-        path="/store/:id"
-        render={routeProps => (
-          <ReplaceRouteIfAuth
-            {...routeProps}
-            child={props => <Store {...props} {...routeProps} />}
-          />
-        )}
-      />
+      <Route path="/stores" render={routeProps => <StoreList {...routeProps} />} />
+      <Route path="/store/:id" render={routeProps => <Store {...routeProps} />} />
       <Route
         path="/cart"
         render={routeProps => (

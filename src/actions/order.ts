@@ -1,3 +1,5 @@
+import { Order } from '../types/api'
+
 export function getOrder(orderId) {
   return {
     type: 'GET_ORDER',
@@ -8,35 +10,6 @@ export function getOrder(orderId) {
       },
     },
   }
-}
-
-interface Order {
-  id: number
-  date: Date
-  customerId: number
-  deliveryAddress: string
-  contact: string
-  storeId: number
-  orderItems: [
-    {
-      id: number
-      orderId: number
-      productId: number
-      product: {
-        id: number
-        storeId: number
-        name: string
-        description: string
-        price: number
-      }
-      price: number
-      quantity: number
-      total: number
-    }
-  ]
-  total: number
-  status: string // 'WAITING'
-  lastUpdate: Date
 }
 
 export function makeOrder(order: Order, token) {

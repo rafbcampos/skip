@@ -29,7 +29,13 @@ export const Nav = props => (
     <H2 mb={0}>SKIP</H2>
     <Flex>
       <Link to="/">
-        <H4 mb={0}>Home</H4>
+        <H4 mb={0}>{props.token ? 'Stores' : 'Login/Register'}</H4>
+      </Link>
+      <Link to="/cart">
+        <H4 mb={0}>Cart</H4>
+      </Link>
+      <Link to="/orders">
+        <H4 mb={0}>My Orders</H4>
       </Link>
       {props.token && (
         <FaSignOut style={{ marginLeft: '20px' }} size="20px" onClick={props.logOut} color="#fff" />

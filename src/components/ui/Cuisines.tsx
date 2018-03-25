@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import styled from '../../theme/styled'
 import { Flex } from '../../components/grid'
 import { getCousines } from '../../actions/cuisine'
+import { Cuisine } from '../../types/api'
 
 const CuisineTag = styled('div')`
   border-radius: 6px;
@@ -19,11 +20,6 @@ const Wrapper = styled(Flex)`
   margin-top: 10px;
   justify-content: flex-end;
 `
-
-interface Cuisine {
-  id: number
-  name: string
-}
 
 interface CuisineProps {
   getCousines: Function
