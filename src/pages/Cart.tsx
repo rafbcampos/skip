@@ -2,11 +2,12 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import map from 'lodash/map'
 
-import { CartItem, clearCart } from '../actions/cart'
+import { clearCart } from '../actions/cart'
 import { makeOrder } from '../actions/order'
 import Button from '../components/ui/Button'
 import { Flex } from '../components/grid'
 import { H4 } from '../components/typography'
+import { CartItem } from '../types/api'
 
 interface CartProps {
   makeOrder: Function

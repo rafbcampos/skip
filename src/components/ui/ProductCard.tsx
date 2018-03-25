@@ -56,11 +56,15 @@ export const ProductCard = props => {
               </H4>
               <H4 ml="10px">${product.price}</H4>
             </Flex>
-            <H4>${props.totalPrice}</H4>
+            {props.totalPrice > 0 && <H4>${props.totalPrice}</H4>}
           </Flex>
           <Flex justify="space-between" w={1}>
             <Paragraph>{product.description}</Paragraph>
-            <Stepper limit={10} onChangeCount={props.onChangeCount} />
+            <Stepper
+              initialCount={props.initialCount}
+              limit={10}
+              onChangeCount={props.onChangeCount}
+            />
           </Flex>
         </Column>
       </Card>

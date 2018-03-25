@@ -12,6 +12,7 @@ interface WrapperProps extends FlexComponent {
   selected?: boolean
   count?: number
   limit?: number
+  initialCount?: number
 }
 
 const Button = styled<WrapperProps, FlexComponent>(Flex)`
@@ -57,8 +58,16 @@ export interface StepperProps extends WrapperProps {
   onChangeCount: (count: number) => void
 }
 
-export class Stepper extends Component<StepperProps & FlexComponent> {
-  state = { minusDisable: true, count: 0 }
+interface StepperState {
+  minusDisable: boolean
+  count: number
+}
+
+export class Stepper extends Component<StepperProps & FlexComponent, StepperState> {
+  constructor(props) {
+    super(props)
+    this.state = { minusDisable: true, count: this.props.initialCount }
+  }
 
   shouldComponentUpdate(nextProps, nextState) {
     if (this.state !== nextState) {
