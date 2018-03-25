@@ -8,10 +8,7 @@ export default function(state = initialState, action) {
     case 'GET_ORDER_SUCCESS':
     case 'MAKE_ORDER_SUCCESS':
       return {
-        order: {
-          ...state,
-          order: { ...state.order, [action.payload.data.id]: action.payload.data },
-        },
+        order: { ...state.order, [action.payload.data.id]: action.payload.data },
         customer: state.customer,
       }
     case 'GET_CUSTOMER_BY_ORDER_SUCCESS':

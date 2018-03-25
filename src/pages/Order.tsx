@@ -28,7 +28,7 @@ const Card = styled(Flex)`
 
 const Order = props => {
   const { match: { params: { id } } } = props
-  const order = filter(props.orders.order, order => order.id == id)[0]
+  const order = filter(props.orders, order => order.id == id)[0]
 
   return (
     <Wrapper>

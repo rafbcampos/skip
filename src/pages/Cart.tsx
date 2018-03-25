@@ -79,28 +79,32 @@ class Cart extends Component<CartProps> {
   render() {
     const { cart } = this.props
     const { orderSuccess } = this.state
+    console.log(cart)
     return (
       <Wrapper w={1}>
         <H3>Cart</H3>
-        {cart && cart.length > 0 ? (
-          <Fragment>
-            {cart.map(item => (
-              <Flex key={item.id} justify="space-between" w={1 / 2}>
-                <H4>{`${item.count} x ${item.name}`}</H4>
-                <H4>{item.totalPrice}</H4>
+        {cart &&
+          cart.length > 0 && (
+            <Fragment>
+              {cart.map(item => (
+                <Flex key={item.id} justify="space-between" w={1 / 2}>
+                  <H4>{`${item.count} x ${item.name}`}</H4>
+                  <H4>{item.totalPrice}</H4>
+                </Flex>
+              ))}
+              <Flex justify="space-between" w={1 / 2}>
+                <H4>Total</H4>
+                <H4>{this.getTotal()}</H4>
               </Flex>
-            ))}
-            <Flex justify="space-between" w={1 / 2}>
-              <H4>Total</H4>
-              <H4>{this.getTotal()}</H4>
-            </Flex>
-            <Button onClick={this.makeOrder}>Order</Button>
-          </Fragment>
-        ) : (
-          <H4>
-            You cart is empty, <Link to="/stores">let's chose something?</Link>
-          </H4>
-        )}
+              <Button onClick={this.makeOrder}>Order</Button>
+            </Fragment>
+          )}
+        {!orderSuccess &&
+          cart.length === 0 && (
+            <H4>
+              You cart is empty, <Link to="/stores">let's chose something?</Link>
+            </H4>
+          )}
         {orderSuccess && <H4>Order sended with success!</H4>}
       </Wrapper>
     )

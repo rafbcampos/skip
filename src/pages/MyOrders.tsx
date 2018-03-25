@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import map from 'lodash/map'
+import isEmpty from 'lodash/isEmpty'
 import moment from 'moment'
 import { connect } from 'react-redux'
 
@@ -30,13 +31,14 @@ const Card = styled(Flex)`
   }
 `
 
-const MyOrders = ({ orders, store }) => {
+const MyOrders = ({ order, store }) => {
+  console.log(order)
   return (
     <Wrapper w={1}>
       <H3 mt="20px">My Orders</H3>
-      {orders ? (
+      {order && !isEmpty(order) ? (
         <OdersList w={1 / 2}>
-          {map(orders.order, order => (
+          {map(order, order => (
             <Link to={`/order/${order.id}`} key={order.id}>
               <Card>
                 <H4>{moment(order.date).fromNow()}</H4>
@@ -54,7 +56,7 @@ const MyOrders = ({ orders, store }) => {
 }
 
 const ConnectMyOrders = connect(({ order, store }) => ({
-  orders: order.order,
+  order: order.order,
   store: store.stores,
 }))(MyOrders)
 
