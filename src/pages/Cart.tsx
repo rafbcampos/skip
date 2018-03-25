@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import map from 'lodash/map'
 
+import styled from '../theme/styled'
 import { clearCart } from '../actions/cart'
 import { makeOrder } from '../actions/order'
 import Button from '../components/ui/Button'
@@ -15,6 +16,12 @@ interface CartProps {
   cart: CartItem[]
   token: string
 }
+
+const Wrapper = styled(Flex)`
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+`
 
 class Cart extends Component<CartProps> {
   state = { orderSuccess: false }
@@ -72,7 +79,7 @@ class Cart extends Component<CartProps> {
     const { cart } = this.props
     const { orderSuccess } = this.state
     return (
-      <Fragment>
+      <Wrapper w={1}>
         {cart &&
           cart.length > 0 && (
             <Fragment>
@@ -90,7 +97,7 @@ class Cart extends Component<CartProps> {
             </Fragment>
           )}
         {orderSuccess && <H4>Order sended with success!</H4>}
-      </Fragment>
+      </Wrapper>
     )
   }
 }
