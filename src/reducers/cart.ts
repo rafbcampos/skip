@@ -1,5 +1,5 @@
 const initialState = {
-  cart: {},
+  cart: [],
 }
 
 export default function(state = initialState, action) {

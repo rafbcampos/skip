@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import FaSignOut from 'react-icons/lib/fa/sign-out'
@@ -31,14 +31,25 @@ export const Nav = props => (
       <Link to="/">
         <H4 mb={0}>{props.token ? 'Stores' : 'Login/Register'}</H4>
       </Link>
-      <Link to="/cart">
-        <H4 mb={0}>Cart</H4>
-      </Link>
-      <Link to="/orders">
-        <H4 mb={0}>My Orders</H4>
-      </Link>
+
       {props.token && (
-        <FaSignOut style={{ marginLeft: '20px' }} size="20px" onClick={props.logOut} color="#fff" />
+        <Fragment>
+          <Link to="/cart">
+            <H4 mb={0}>Cart</H4>
+          </Link>
+          <Link to="/orders">
+            <H4 mb={0}>My Orders</H4>
+          </Link>
+          <FaSignOut
+            style={{ marginLeft: '20px' }}
+            size="20px"
+            onClick={() => {
+              props.logOut()
+              props.history.replace('/')
+            }}
+            color="#fff"
+          />
+        </Fragment>
       )}
     </Flex>
   </NavWrapper>

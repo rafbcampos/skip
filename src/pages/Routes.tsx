@@ -13,7 +13,7 @@ import Order from './Order'
 const Routes = () => (
   <Router>
     <Fragment>
-      <Nav />
+      <Route render={routerProps => <Nav {...routerProps} />} />
       <Route
         exact
         path="/"

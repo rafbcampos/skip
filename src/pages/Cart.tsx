@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import map from 'lodash/map'
 
@@ -7,7 +8,7 @@ import { clearCart } from '../actions/cart'
 import { makeOrder } from '../actions/order'
 import Button from '../components/ui/Button'
 import { Flex } from '../components/grid'
-import { H4 } from '../components/typography'
+import { H4, H3 } from '../components/typography'
 import { CartItem } from '../types/api'
 
 interface CartProps {
@@ -80,22 +81,26 @@ class Cart extends Component<CartProps> {
     const { orderSuccess } = this.state
     return (
       <Wrapper w={1}>
-        {cart &&
-          cart.length > 0 && (
-            <Fragment>
-              {cart.map(item => (
-                <Flex key={item.id} justify="space-between" w={1 / 2}>
-                  <H4>{`${item.count} x ${item.name}`}</H4>
-                  <H4>{item.totalPrice}</H4>
-                </Flex>
-              ))}
-              <Flex justify="space-between" w={1 / 2}>
-                <H4>Total</H4>
-                <H4>{this.getTotal()}</H4>
+        <H3>Cart</H3>
+        {cart && cart.length > 0 ? (
+          <Fragment>
+            {cart.map(item => (
+              <Flex key={item.id} justify="space-between" w={1 / 2}>
+                <H4>{`${item.count} x ${item.name}`}</H4>
+                <H4>{item.totalPrice}</H4>
               </Flex>
-              <Button onClick={this.makeOrder}>Order</Button>
-            </Fragment>
-          )}
+            ))}
+            <Flex justify="space-between" w={1 / 2}>
+              <H4>Total</H4>
+              <H4>{this.getTotal()}</H4>
+            </Flex>
+            <Button onClick={this.makeOrder}>Order</Button>
+          </Fragment>
+        ) : (
+          <H4>
+            You cart is empty, <Link to="/stores">let's chose something?</Link>
+          </H4>
+        )}
         {orderSuccess && <H4>Order sended with success!</H4>}
       </Wrapper>
     )
