@@ -1,4 +1,4 @@
-# Skip - An application prototype in React / Redux to order food online.
+# Skip - An application prototype in React / Redux to order food online. 🍔🍟🍕
 
 ### Description
 
@@ -19,9 +19,9 @@ The application is composed of the following routes:
 * `/orders`: List of purchases, informing their status.
 * `/order/:id`: Purchase Details
 
-The status of the application is managed by Redux, which has its store persisted with Redux-Persist. API calls are made through Axios and promises are resolved through redux-axios-middleware.
+The state of the application is managed by Redux, which has its store persisted with Redux-Persist. API calls are made through Axios and promises are resolved through redux-axios-middleware.
 
-The app relies on Service Work through the WorkBox, caching API calls and using the staleWhileRevalidate strategy to refresh the cache with API responses, delivering the cached version while you call, for faster speed.
+The app relies on Service Work through the WorkBox, caching API calls for Products and Stores and using the staleWhileRevalidate strategy to refresh the cache with API responses, delivering the cached version while you call, for faster speed.
 
 ### Installation
 
