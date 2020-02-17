@@ -3,24 +3,55 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import Home from './Home'
 import Nav from '../components/ui/Nav'
-import PrivateRoute from '../hoc/PrivateRoutes'
-import Dashboard from './Dashboard'
-import { About } from './About'
+import ReplaceRouteIfAuth from '../hoc/ReplaceRouteIfAuth'
+import StoreList from './StoreList'
+import Store from './Store'
+import Cart from './Cart'
+import MyOrders from './MyOrders'
+import Order from './Order'
 
 const Routes = () => (
   <Router>
     <Fragment>
-      <Nav />
-
+      <Route render={routerProps => <Nav {...routerProps} />} />
       <Route
         exact
         path="/"
-        render={props => <PrivateRoute {...props} child={props => <Home {...props} />} />}
+        render={routeProps => (
+          <ReplaceRouteIfAuth
+            {...routeProps}
+            child={props => <Home {...props} {...routeProps} />}
+          />
+        )}
       />
-      <Route path="/about" component={About} />
+      <Route path="/stores" render={routeProps => <StoreList {...routeProps} />} />
+      <Route path="/store/:id" render={routeProps => <Store {...routeProps} />} />
       <Route
-        path="/dashboard"
-        render={props => <PrivateRoute {...props} child={props => <Dashboard {...props} />} />}
+        path="/cart"
+        render={routeProps => (
+          <ReplaceRouteIfAuth
+            {...routeProps}
+            child={props => <Cart {...props} {...routeProps} />}
+          />
+        )}
+      />
+      <Route
+        path="/orders"
+        render={routeProps => (
+          <ReplaceRouteIfAuth
+            {...routeProps}
+            child={props => <MyOrders {...props} {...routeProps} />}
+          />
+        )}
+      />
+      <Route
+        path="/order/:id"
+        render={routeProps => (
+          <ReplaceRouteIfAuth
+            {...routeProps}
+            child={props => <Order {...props} {...routeProps} />}
+          />
+        )}
       />
     </Fragment>
   </Router>

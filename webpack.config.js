@@ -84,10 +84,6 @@ module.exports = {
   plugins: plugins,
   resolve: {
     extensions: ['*', '.js', '.jsx', '.ts', '.tsx'],
-    alias: {
-      'ef-common': path.resolve(__dirname, '../../common/src'),
-      'ef-landing': path.resolve(__dirname, 'src'),
-    },
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
   },
   mode: env,
@@ -101,7 +97,7 @@ module.exports = {
     rules: [
       {
         test: /\.(ts|tsx)$/,
-        loader: ['babel-loader', 'ts-loader'],
+        use: ['babel-loader', 'ts-loader'],
       },
       {
         test: /\.(js|jsx)$/,
@@ -110,7 +106,7 @@ module.exports = {
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
-        loaders: ['file-loader?name=public/images/[name].[ext]', 'image-webpack-loader'],
+        use: ['file-loader?name=public/images/[name].[ext]', 'image-webpack-loader'],
       },
       {
         test: /\.(eot|ttf|woff|woff2)$/,

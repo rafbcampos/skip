@@ -34,7 +34,7 @@ export function searchStoreById(storeId) {
 
 export function searchProductsByStoreId(storeId) {
   return {
-    type: 'SEARCH_STORE_BY_ID',
+    type: 'SEARCH_PRODUCTS_BY_STORE_ID',
     request: {
       method: 'get',
       url: `/api/v1/Store/${storeId}/products`,

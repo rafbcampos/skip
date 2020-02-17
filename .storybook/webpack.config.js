@@ -1,48 +1,30 @@
 const path = require('path')
-const webpack = require('webpack')
-const WebpackPwaManifest = require('webpack-pwa-manifest')
-const genDefaultConfig = require('@storybook/react/dist/server/config/defaults/webpack.config.js')
-
-const getStorybookWebpackPlugins = require(path.resolve(
-  __dirname,
-  '../../../build/getStorybookWebpackPlugins.js',
-))
-const getWebpackBaseConfig = require(path.resolve(
-  __dirname,
-  '../../../build/getWebpackBaseConfig.js',
-))
 
 module.exports = function(config, env) {
-  const storybookWebpackConfig = genDefaultConfig(config, env)
-  const paths = {
-    'ef-common/*': ['../../../common/src/*'],
-    'ef-landing/*': ['../src/*'],
+  config.resolve = {
+    extensions: ['*', '.js', '.jsx', '.ts', '.tsx'],
+    modules: [path.resolve(__dirname, '../src'), 'node_modules'],
   }
 
-  const plugins = Object.assign(
-    getStorybookWebpackPlugins(__dirname, paths),
-    storybookWebpackConfig.plugins,
-  )
-
-  const alias = {
-    'ef-common': path.resolve(__dirname, '../../../common/src'),
-    'ef-landing': path.resolve(__dirname, '../src'),
-  }
-
-  const baseConfig = getWebpackBaseConfig()
-
-  const customWebpackConfig = {
-    entry: storybookWebpackConfig.entry,
-    output: storybookWebpackConfig.output,
-    plugins: plugins,
-    resolve: {
-      extensions: ['*', '.js', '.jsx', '.ts', '.tsx'],
-      alias: Object.assign(alias, storybookWebpackConfig.alias),
-      modules: [path.resolve(__dirname, '../src'), 'node_modules'],
+  config.module.rules = [
+    {
+      test: /\.(ts|tsx)$/,
+      use: ['babel-loader', 'awesome-typescript-loader'],
     },
-  }
+    {
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      loader: 'babel-loader',
+    },
+    {
+      test: /\.(gif|png|jpe?g|svg)$/i,
+      use: ['file-loader?name=public/images/[name].[ext]', 'image-webpack-loader'],
+    },
+    {
+      test: /\.(eot|ttf|woff|woff2)$/,
+      loader: 'file-loader?name=public/fonts/[name].[ext]',
+    },
+  ]
 
-  const webpackConfig = Object.assign(customWebpackConfig, baseConfig)
-
-  return webpackConfig
+  return config
 }

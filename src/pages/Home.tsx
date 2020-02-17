@@ -12,6 +12,7 @@ import { signUp, signIn } from '../actions/auth'
 
 import styled from '../theme/styled'
 import Button from '../components/ui/Button'
+import RouterProps from '../types/router'
 
 const Input = styled('input')`
   font-family: ${props => props.theme.font};
@@ -40,7 +41,7 @@ const Form = styled<FormProps, 'form'>('form')`
   ${width};
 `
 
-interface HomeProps {
+interface HomeProps extends RouterProps {
   signUp: Function
   signIn: Function
   error: string
@@ -58,7 +59,11 @@ class Home extends Component<HomeProps> {
       password,
     }
 
-    this.props.signIn(login)
+    this.props.signIn(login).then(res => {
+      if (res.type === 'SIGNIN_SUCCESS') {
+        this.props.history.push('/stores')
+      }
+    })
   }
 
   signUp = e => {
@@ -73,7 +78,11 @@ class Home extends Component<HomeProps> {
       password,
     }
 
-    this.props.signUp(customer)
+    this.props.signUp(customer).then(res => {
+      if (res.type === 'SIGNUP_SUCCESS') {
+        this.props.history.push('/stores')
+      }
+    })
   }
 
   render() {

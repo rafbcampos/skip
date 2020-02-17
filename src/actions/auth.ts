@@ -1,11 +1,4 @@
-interface Customer {
-  id: number
-  email: string
-  name: string
-  address: string
-  creation: string
-  password: string
-}
+import { Customer, Login } from '../types/api'
 
 export function signUp(customer: Customer) {
   return {
@@ -24,11 +17,6 @@ export function logOut() {
   return {
     type: 'LOGOUT',
   }
-}
-
-interface Login {
-  email: string
-  password: string
 }
 
 export function signIn(login: Login) {

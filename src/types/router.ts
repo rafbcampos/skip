@@ -3,7 +3,7 @@ export default interface RouterProps {
     path: string
     url: string
     isExact: boolean
-    params: { code: string }
+    params: { id: number }
   }
   location: {
     pathname: string

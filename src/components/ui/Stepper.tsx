@@ -5,16 +5,17 @@ import color from 'tinycolor2'
 import TiMinus from 'react-icons/lib/ti/minus'
 import TiPlus from 'react-icons/lib/ti/plus'
 
-import { Box, Flex, FlexComponent, BoxComponent } from '../grid'
+import { Flex, FlexComponent } from '../grid'
 import styled from '../../theme/styled'
 
 interface WrapperProps extends FlexComponent {
   selected?: boolean
   count?: number
   limit?: number
+  initialCount?: number
 }
 
-const Button = styled<WrapperProps, BoxComponent>(Box)`
+const Button = styled<WrapperProps, FlexComponent>(Flex)`
   ${props => {
     const selected = props.selected
     const alpha = selected ? 1 : 0.3
@@ -24,14 +25,16 @@ const Button = styled<WrapperProps, BoxComponent>(Box)`
       .toString()
 
     return css`
+      justify-content: center;
+      align-items: center;
       background-color: ${background};
       color: ${label};
       fill: ${label};
     `
   }};
   cursor: pointer;
-  padding: 8px;
   width: 42px;
+  height: 42px;
   transition: box-shadow 60ms ease-out;
   box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.16);
 
@@ -55,8 +58,16 @@ export interface StepperProps extends WrapperProps {
   onChangeCount: (count: number) => void
 }
 
-export class Stepper extends Component<StepperProps & FlexComponent> {
-  state = { minusDisable: true, count: 0 }
+interface StepperState {
+  minusDisable: boolean
+  count: number
+}
+
+export class Stepper extends Component<StepperProps & FlexComponent, StepperState> {
+  constructor(props) {
+    super(props)
+    this.state = { minusDisable: true, count: this.props.initialCount }
+  }
 
   shouldComponentUpdate(nextProps, nextState) {
     if (this.state !== nextState) {

@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import styled from '../theme/styled'
-import { Flex } from '../components/grid'
-import { getCousines } from '../actions/cuisine'
+import styled from '../../theme/styled'
+import { Flex } from '../../components/grid'
+import { getCousines } from '../../actions/cuisine'
+import { Cuisine } from '../../types/api'
 
 const CuisineTag = styled('div')`
   border-radius: 6px;
@@ -12,12 +13,13 @@ const CuisineTag = styled('div')`
   color: ${props => props.theme.colors.heading};
   background-color: ${props => props.theme.colors.action};
   cursor: pointer;
+  margin-right: 10px;
 `
 
-interface Cuisine {
-  id: number
-  name: string
-}
+const Wrapper = styled(Flex)`
+  margin-top: 10px;
+  justify-content: flex-end;
+`
 
 interface CuisineProps {
   getCousines: Function
@@ -25,7 +27,7 @@ interface CuisineProps {
   setCusine: Function
 }
 
-class Cuisines extends Component<CuisineProps> {
+export class Cuisines extends Component<CuisineProps> {
   componentDidMount() {
     this.props.getCousines()
   }
@@ -34,17 +36,19 @@ class Cuisines extends Component<CuisineProps> {
     const { cuisines } = this.props
 
     return (
-      <Flex>
+      <Wrapper w={1}>
         {cuisines &&
           cuisines.map(cuisine => (
-            <CuisineTag
-              key={cuisine.id}
-              onClick={e => this.props.setCusine({ cusine: cuisine.id })}
-            >
+            <CuisineTag key={cuisine.id} onClick={e => this.props.setCusine(cuisine.id)}>
               {cuisine.name}
             </CuisineTag>
           ))}
-      </Flex>
+        {cuisines && (
+          <CuisineTag key={0} onClick={e => this.props.setCusine(0)}>
+            All
+          </CuisineTag>
+        )}
+      </Wrapper>
     )
   }
 }

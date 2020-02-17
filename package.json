@@ -8,7 +8,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "test": "jest --watch --coverage --config ./jest.config.js",
-    "storybook": "start-storybook -s ./public -p 6007",
+    "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "build": "yarn run clean && yarn run build:webpack",
     "build:webpack": "NODE_ENV=production yarn run webpack -p --colors --progress --display-error-details",
@@ -17,8 +17,6 @@
     "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
-    "@storybook/addon-info": "^3.3.15",
-    "@storybook/react": "^3.3.15",
     "@types/enzyme": "^3.1.9",
     "@types/express": "^4.11.1",
     "@types/jest": "^22.2.0",
@@ -26,6 +24,7 @@
     "@types/react": "^16.0.40",
     "@types/react-dom": "^16.0.4",
     "@types/react-router-dom": "^4.2.4",
+    "awesome-typescript-loader": "^4.0.1",
     "axios": "^0.18.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
@@ -45,7 +44,7 @@
     "image-webpack-loader": "^4.2.0",
     "jest": "^22.4.2",
     "jest-webpack-resolver": "^0.3.0",
-    "js-cookie": "^2.2.0",
+    "moment": "^2.21.0",
     "prettier": "^1.11.1",
     "raf": "^3.4.0",
     "react": "^16.2.0",
@@ -77,5 +76,9 @@
     "webpack-pwa-manifest": "^3.6.2",
     "workbox-sw": "^3.0.0",
     "workbox-webpack-plugin": "^3.0.0"
+  },
+  "devDependencies": {
+    "@storybook/addons": "^3.3.15",
+    "@storybook/react": "^3.3.15"
   }
 }
